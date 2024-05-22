@@ -50,6 +50,8 @@ public class Exercicio06 {
                 if (repetidas.contains(pessoas.get(i))&&j ==count) {
                     System.out.println("O usuário digitou o nome " + pessoas.get(i) + ", " + count + " vezes.");
                     j=0;
+                }else{
+                    System.out.println("Não tem nomes repetidos!");
                 }
                 j++;
         }

@@ -1,8 +1,8 @@
 package EstruturaDeDados.StacksEQueues;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import com.sun.source.tree.WhileLoopTree;
+
+import java.io.*;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -20,17 +20,35 @@ public class Exercicio08 {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         Stack<String> stack = new Stack<>();
-        String path = "C:/Users/famil/Documents/Teamcubation/comandos.txt";
+        String path = "C:/Users/famil/Documents/Teamcubation/comandosDigitados.txt";
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+        String comandos = "";
+        boolean execucao = true;
+        boolean verificacao = true;
+        while( execucao){
+            System.out.print("Escreva comandos: ");
+            comandos = scanner.nextLine().toUpperCase();
+
+            if (comandos.contains("CTRL + Z")){
+                execucao = false;
+                buffWrite.append(comandos + "\n");
+            }else{
+                buffWrite.append(comandos + "\n");
+            }
+        }
+        buffWrite.close();
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
         String linha = "";
-        System.out.println("Impressão dos arquivos de entrada: ");
-        while (true) {
+        System.out.println();
+        System.out.println("Impressão dos arquivos de entrada gravados no arquivo txt: ");
+        while (verificacao) {
             if (linha != null) {
                 System.out.println(linha);
                 stack.push(linha);
 
-            } else
-                break;
+            } else{
+                verificacao = false;
+            }
             linha = buffRead.readLine();
         }
         buffRead.close();
